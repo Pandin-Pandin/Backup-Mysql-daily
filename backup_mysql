@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#Strings of paths
+BKP=/root/backup/mysqlt.sql
+BKP2=/root/backup/mysqlt.sql.1
+#Checking the first file
+if [[ -f  "$BKP" ]]; then
+      echo "$BKP exist."
+#backup of the actual file
+     cp -u "$BKP" "$BKP2"
+
+#Deleting the file BKP
+     rm "$BKP"
+
+#Creating Mysql backup file
+mysqldump -u root -p"Password" --all-databases > "$BKP"
+
+#Ending
+     echo "Backup realizado com sucesso!"
+else
+      echo "$BKP doesn't exist."
+fi
